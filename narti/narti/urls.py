@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from registration.views import index, comics
+from narti.registration.views import index, comics
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', index),
     path('', index),
-    path('narti/api/comics/', comics),
+    path('comics/', comics),
 
 ]
