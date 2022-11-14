@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/.idea/misc.xml
+/.idea/workspace.xml
+/.idea/pythonProject.iml
+/.idea/dbnavigator.xml
