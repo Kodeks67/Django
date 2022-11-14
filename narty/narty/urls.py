@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', index),
     path('', index),
-    path('narty/api/comics/', comics)
+    path('narty/api/comics/', comics),
 
 ]
