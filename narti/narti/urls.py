@@ -15,16 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url
-from . import views
+from django.urls import include, re_path
+from account import views
 
-from registration.views import index, comics
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', index),
-    path('', index),
-    path('comics/', comics),
-    url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', views.user_login, name='login'),
+    re_path('', views.register, name='login'),
+    re_path(r'^register/$', views.register, name='register'),
+    re_path(r'^login/$', views.user_login, name='login'),
 ]
