@@ -1,4 +1,4 @@
-"""narty URL Configuration
+"""narti URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', index),
     path('', index),
-    path('narty/api/comics/', comics),
+    path('narti/api/comics/', comics),
 
 ]
