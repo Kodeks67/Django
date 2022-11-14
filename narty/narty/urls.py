@@ -1,4 +1,4 @@
-"""narti URL Configuration
+"""narty URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from registration.views import index
+from registration.views import index, comics
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', index),
     path('', index),
+    path('narty/api/comics/', comics)
 
 ]
