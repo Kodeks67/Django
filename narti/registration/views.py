@@ -10,5 +10,5 @@ def index(request):
 
 
 def comics(request):
-    return HttpResponse("Коллекция комиксов")
+    return HttpResponse("<h1>Коллекция комиксов</h1>")
 
