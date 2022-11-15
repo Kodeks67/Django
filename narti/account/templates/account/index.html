@@ -2,5 +2,15 @@
 
 {% block content %}
 <h1>{{title}}</h1>>
-<p>Содержимое главной страницы</p>
+<p>Содержимое главной страницы
+
+<ul>
+    <li> {% for с in comics %}
+        <h2>{{c.title}}</h2>
+        <p>{{c.lang}}</p>
+        <hr>
+        {% endfor %}
+    </li>
+</ul>
+
 {% endblock %}
