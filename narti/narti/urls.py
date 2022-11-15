@@ -21,7 +21,7 @@ from account import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path('', views.register, name='login'),
+    path('', views.index),
     re_path(r'^register/$', views.register, name='register'),
     re_path(r'^login/$', views.user_login, name='login'),
 ]

@@ -5,6 +5,13 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
 
+menu = ['Регистрация', 'Войти', 'О сайте']
+
+
+def index(request):
+    return render(request, 'account/index.html', {'menu': menu, 'title': 'Главная страница'})
+
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
