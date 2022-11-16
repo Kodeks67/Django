@@ -6,8 +6,8 @@ from .forms import LoginForm
 from .models import Comics
 
 
-menu = ['Регистрация', 'Войти', 'О сайте']
-
+# menu = ['Регистрация', 'Войти', 'О сайте']
+menu = []
 
 def index(request):
     comics = Comics.objects.all()
