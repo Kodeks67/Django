@@ -5,8 +5,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .models import Comics
 
-# menu = ['Регистрация', 'Войти', 'О сайте']
-menu = []
+menu = ['Регистрация', 'Войти', 'О сайте']
 
 
 def index(request):

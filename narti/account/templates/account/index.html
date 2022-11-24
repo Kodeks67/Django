@@ -1,16 +1,15 @@
 {% extends 'account/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<p>Содержимое главной страницы</p>
-
-<ul>
-    <li> {% for с in comics %}
-        <h2>{{c.title}}</h2>
-        <p>{{c.lang}}</p>
-        <hr>
-        {% endfor %}
-    </li>
+<ul class="list-articles">
+	{% for p in posts %}
+			<li><h2>{{p.title}}</h2>
+	{% autoescape on %}
+	{{p.content|linebreaks|truncatewords:50}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="#">Читать пост</a></p>
+			</li>
+	{% endfor %}
 </ul>
-
 {% endblock %}
