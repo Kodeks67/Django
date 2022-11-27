@@ -5,12 +5,18 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .models import Comics
 
-menu = ['Регистрация', 'Войти', 'О сайте']
+menu = [{'title': 'Регистрация', 'url_name': 'register'},
+        {'title': 'Войти', 'url_name': 'login'},
+        {'title': 'О сайте', 'url_name': 'about'}
+        ]
 
 
 def index(request):
     comics = Comics.objects.all()
-    return render(request, 'account/index.html', {'comics': comics, 'menu': menu, 'title': 'Главная страница'})
+    index_context = {'comics': comics,
+                     'menu': menu,
+                     'title': 'Главная страница'}
+    return render(request, 'account/index.html', context=index_context)
 
 
 def user_login(request):
@@ -46,3 +52,13 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {'user_form': user_form})
+
+
+def about(request):
+    about_context = {'menu': menu,
+                     'title': 'О сайте'}
+    return render(request, 'account/about.html', context=about_context)
+
+
+def show_coms_id(request, coms_id):
+    return HttpResponse(f"Отображение комиксов с id = {coms_id}")
