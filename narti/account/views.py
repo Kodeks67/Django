@@ -70,3 +70,4 @@ def language(request):
 
 def lang_comics(request):
     return HttpResponse(f"Отображение комиксов по языкам")
+

@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('language/', views.language, name='language'),
     path('lang-comics/', views.lang_comics, name='lang-comics'),
+    path('comics/',  views.index, name='comics'),
     path('comics/<int:coms_id>',  views.show_coms_id, name='comics_id'),
     path('about/', views.about, name='about'),
     re_path('register/', views.register, name='register'),
