@@ -21,9 +21,9 @@ from account import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('language/', views.index, name='language'),
-    path('comics/', views.index, name='comics'),
-    path('comics/<int:coms_id>', views.index, name='comics'),
+    path('language/', views.language, name='language'),
+    path('lang-comics/', views.lang_comics, name='lang-comics'),
+    path('comics/<int:coms_id>',  views.show_coms_id, name='comics_id'),
     path('about/', views.about, name='about'),
     re_path('register/', views.register, name='register'),
     re_path('login/', views.user_login, name='login'),

@@ -15,4 +15,4 @@ def __str__(self):
 
 
 def get_absolute_url(self):
-    return reverse('post', kwargs={'coms_id': self.pk})
+    return reverse('comics_id', kwargs={'coms_id': self.pk})

@@ -62,3 +62,11 @@ def about(request):
 
 def show_coms_id(request, coms_id):
     return HttpResponse(f"Отображение комиксов с id = {coms_id}")
+
+
+def language(request):
+    return HttpResponse(f"Отображение языков")
+
+
+def lang_comics(request):
+    return HttpResponse(f"Отображение комиксов по языкам")

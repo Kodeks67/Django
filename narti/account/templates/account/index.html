@@ -2,13 +2,13 @@
 
 {% block content %}
 <ul class="list-articles">
-	{% for p in posts %}
+	{% for p in comics %}
 			<li><h2>{{p.title}}</h2>
 	{% autoescape on %}
 	{{p.content|linebreaks|truncatewords:50}}
 	{% endautoescape %}
 			<div class="clear"></div>
-			<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></p>
+			<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
 			</li>
 	{% endfor %}
 </ul>
