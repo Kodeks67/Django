@@ -64,6 +64,10 @@ def show_coms_id(request, coms_id):
     return HttpResponse(f"Отображение комиксов с id = {coms_id}")
 
 
+def show_lang_id(request, lang_id):
+    return HttpResponse(f"Отображение комиксов с id = {lang_id}")
+
+
 def language(request):
     return HttpResponse(f"Отображение языков")
 

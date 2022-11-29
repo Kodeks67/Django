@@ -2,14 +2,19 @@
 
 {% block content %}
 <ul class="list-articles">
-	{% for p in comics %}
-			<li><h2>{{p.title}}</h2>
-	{% autoescape on %}
-	{{p.content|linebreaks|truncatewords:50}}
-	{% endautoescape %}
-			<div class="clear"></div>
-			<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
-			</li>
-	{% endfor %}
+    {% for p in comics %}
+    <li>
+    <li><h2>{{p.title}}</h2>
+    <li><h4>{{p.description}}</h4>
+        {% autoescape on %}
+        {{p.content|linebreaks|truncatewords:50}}
+        {% endautoescape %}
+        <div class="clear"></div>
+        <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
+        <div class="article-panel">
+            <p class="lanuage">язык: {{p.language}}</p>
+        </div>
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}
