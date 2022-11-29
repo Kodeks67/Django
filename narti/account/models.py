@@ -9,10 +9,8 @@ class Comics(models.Model):
     lang = models.CharField(max_length=3)
     is_published = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.title
 
-def __str__(self):
-    return self.title
-
-
-def get_absolute_url(self):
-    return reverse('comics_id', kwargs={'coms_id': self.pk})
+    def get_absolute_url(self):
+        return reverse('comics_id', kwargs={'coms_id': self.pk})
