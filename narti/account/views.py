@@ -17,7 +17,8 @@ def index(request):
         raise Http404()
     index_context = {'comics': comics,
                      'menu': menu,
-                     'title': 'Главная страница'}
+                     'title': 'Главная страница',
+                     }
     return render(request, 'account/index.html', context=index_context)
 
 
@@ -63,7 +64,7 @@ def about(request):
 
 
 def show_coms_id(request, coms_id):
-    return HttpResponse(f"Отображение комиксов с id = {coms_id}")
+    return render(request, 'account/comics.html')
 
 
 def show_lang_id(request, lang_id):
@@ -71,9 +72,12 @@ def show_lang_id(request, lang_id):
 
 
 def language(request):
-    return HttpResponse(f"Отображение языков")
+    return render(request, 'account/language.html')
 
 
 def lang_comics(request):
-    return HttpResponse(f"Отображение комиксов по языкам")
+    return render(request, 'account/lang_comics.html')
 
+
+def comics(request):
+    return render(request, 'account/comics.html')
