@@ -1,6 +1,8 @@
 {% extends 'account/base.html' %}
 
-{% block content %}
-<h1>{{title}}</h1>
-<p>Содержимое страницы о сайте
+{% block title %}Thanks{% endblock %}
+
+{% block body %}
+<h1>Thanks for your response.</h1>
+<p><a href="{% url 'form:home' %}">Response again?</a></p>
 {% endblock %}

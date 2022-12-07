@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from .models import FeedBack
 
 
 class LoginForm(forms.Form):
@@ -20,3 +21,9 @@ class UserRegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
+
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = FeedBack
+        exclude = []

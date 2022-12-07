@@ -1,5 +1,10 @@
 {% extends 'account/base.html' %}
 
 {% block content %}
-asdsasdads
+    {% for d in comics_item %}
+        <li><h2>{{d.title}}</h2>
+        <li><h4>{{d.description}}</h4>
+        <li><h4>{{d.photo}}</h4>
+        <li><h4>{{d.language}}</h4>
+    {% endfor %}
 {% endblock %}

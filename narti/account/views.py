@@ -1,9 +1,10 @@
 from .forms import LoginForm, UserRegistrationForm
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
-from .models import Comics
+from .models import Comics, Language
+from .forms import FeedBack
 
 menu = [{'title': 'Регистрация', 'url_name': 'register'},
         {'title': 'Войти', 'url_name': 'login'},
@@ -13,8 +14,8 @@ menu = [{'title': 'Регистрация', 'url_name': 'register'},
 
 def index(request):
     comics = Comics.objects.all()
-    if len(comics) == 0:
-        raise Http404()
+    # if len(comics) == 0:
+    #     # raise Http404()
     index_context = {'comics': comics,
                      'menu': menu,
                      'title': 'Главная страница',
@@ -58,13 +59,26 @@ def register(request):
 
 
 def about(request):
-    about_context = {'menu': menu,
-                     'title': 'О сайте'}
-    return render(request, 'account/about.html', context=about_context)
+    if request.method == 'POST':
+        form = FeedBack(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return render(request, 'account/about.html')
+    else:
+        form = FeedBack()
+    return render(request, 'account/feedback_form.html', {'form': form})
 
 
 def show_coms_id(request, coms_id):
-    return render(request, 'account/comics.html')
+    сomics_item = Comics.objects.filter(id=coms_id)
+    comics = Comics.objects.all()
+    show_coms_id_context = {'comics': comics,
+                            'menu': menu,
+                            'title': 'Главная страница',
+                            'comics_item': сomics_item,
+                            }
+    return render(request, 'account/comics.html', context=show_coms_id_context)
 
 
 def show_lang_id(request, lang_id):
@@ -72,11 +86,30 @@ def show_lang_id(request, lang_id):
 
 
 def language(request):
-    return render(request, 'account/language.html')
+    lang_str = Language.objects.all()
+    language_context = {'comics': comics,
+                        'menu': menu,
+                        'title': 'Главная страница',
+                        'lang_str': lang_str,
+                        }
+    return render(request, 'account/language.html', context=language_context)
 
 
 def lang_comics(request):
-    return render(request, 'account/lang_comics.html')
+    if request.GET:
+        queryprms = request.GET
+        lang = queryprms.get('lang')
+        search = queryprms.get('search')
+        print(request.GET)
+        filt_comics = Comics.objects.filter(language__abbr=lang, gender=search)
+        lang_comics_context = {'comics': comics,
+                               'menu': menu,
+                               'title': 'Главная страница',
+                               'filt_comics': filt_comics,
+                               }
+        return render(request, 'account/lang_comics.html', context=lang_comics_context)
+    else:
+        return render(request, 'account/lang_comics.html')
 
 
 def comics(request):
