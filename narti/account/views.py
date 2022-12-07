@@ -13,6 +13,8 @@ menu = [{'title': 'Регистрация', 'url_name': 'register'},
 
 def index(request):
     comics = Comics.objects.all()
+    if len(comics) == 0:
+        raise Http404()
     index_context = {'comics': comics,
                      'menu': menu,
                      'title': 'Главная страница'}
