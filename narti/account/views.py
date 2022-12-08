@@ -1,10 +1,10 @@
 from .forms import LoginForm, UserRegistrationForm
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .models import Comics, Language
-from .forms import FeedBack
+from .forms import FeedbackForm
 
 menu = [{'title': 'Регистрация', 'url_name': 'register'},
         {'title': 'Войти', 'url_name': 'login'},
@@ -60,20 +60,20 @@ def register(request):
 
 def about(request):
     if request.method == 'POST':
-        form = FeedBack(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'account/about.html')
+        feedback_form = FeedbackForm(request.POST)
+        if feedback_form.is_valid():
+            new_feedback = feedback_form.save(commit=False)
+            new_feedback.set_message(feedback_form.check_message['message'])
+            new_feedback.save()
+            return render(request, 'account/about.html', {'new_feedback': new_feedback})
     else:
-        form = FeedBack()
-    return render(request, 'account/feedback_form.html', {'form': form})
+        feedback = FeedbackForm()
+    return render(request, 'account/feedback_form.html', {'form': feedback})
 
 
 def show_coms_id(request, coms_id):
-    сomics_item = Comics.objects.filter(id=coms_id)
-    comics = Comics.objects.all()
-    show_coms_id_context = {'comics': comics,
-                            'menu': menu,
+    сomics_item = get_object_or_404(Comics, pk=coms_id)
+    show_coms_id_context = {'menu': menu,
                             'title': 'Главная страница',
                             'comics_item': сomics_item,
                             }

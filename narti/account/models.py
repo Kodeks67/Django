@@ -41,3 +41,6 @@ def validate_even(value):
 class FeedBack(models.Model):
     email = models.EmailField(max_length=254, validators=[validate_even])
     message = models.TextField(blank=False)
+
+    def __str__(self):
+        return self.email
