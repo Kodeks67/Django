@@ -1,9 +1,10 @@
 from .forms import LoginForm, UserRegistrationForm, FeedbackForm
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .models import Comics, Language
+from .forms import FeedBack
 
 menu = [{'title': 'Регистрация', 'url_name': 'register'},
         {'title': 'Войти', 'url_name': 'login'},
@@ -69,10 +70,8 @@ def about(request):
 
 
 def show_coms_id(request, coms_id):
-    сomics_item = Comics.objects.filter(id=coms_id)
-    comics = Comics.objects.all()
-    show_coms_id_context = {'comics': comics,
-                            'menu': menu,
+    сomics_item = get_object_or_404(Comics, pk=coms_id)
+    show_coms_id_context = {'menu': menu,
                             'title': 'Главная страница',
                             'comics_item': сomics_item,
                             }
