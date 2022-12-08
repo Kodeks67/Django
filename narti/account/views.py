@@ -1,10 +1,9 @@
-from .forms import LoginForm, UserRegistrationForm
+from .forms import LoginForm, UserRegistrationForm, FeedbackForm
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .models import Comics, Language
-from .forms import FeedBack
 
 menu = [{'title': 'Регистрация', 'url_name': 'register'},
         {'title': 'Войти', 'url_name': 'login'},
@@ -60,13 +59,12 @@ def register(request):
 
 def about(request):
     if request.method == 'POST':
-        form = FeedBack(request.POST)
-
+        form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'account/about.html')
     else:
-        form = FeedBack()
+        form = FeedbackForm()
     return render(request, 'account/feedback_form.html', {'form': form})
 
 
