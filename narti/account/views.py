@@ -61,7 +61,6 @@ def register(request):
 def about(request):
     if request.method == 'POST':
         form = FeedBack(request.POST)
-
         if form.is_valid():
             form.save()
             return render(request, 'account/about.html')

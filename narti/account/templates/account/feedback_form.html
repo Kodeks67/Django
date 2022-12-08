@@ -3,9 +3,9 @@
 {% block title %}Feedback Form{% endblock %}
 
 {% block body %}
-<form action="{% url 'form:home' %}" method="POST">
-    {% csrf_token %}
+<form action="{% url 'form:about' %}" method="POST">
     {{ form.as_p }}
+    {% csrf_token %}
     <input type="submit" />
 </form>
 {% endblock %}
