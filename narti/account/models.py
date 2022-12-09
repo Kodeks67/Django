@@ -7,7 +7,9 @@ from django.utils.translation import gettext_lazy as _
 class Comics(models.Model):
     title = models.CharField(max_length=50, verbose_name='Title')
     description = models.TextField(blank=True, verbose_name='Description')
-    photo = models.ImageField(upload_to="photos/%Y/%m/%d")
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d", verbose_name='')
+    time_create = models.DateTimeField(auto_now_add=True)
+    time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
     language = models.ForeignKey('Language', on_delete=models.PROTECT, null=True, verbose_name='Language')
     gender = models.CharField(max_length=4, null=True)
@@ -17,6 +19,11 @@ class Comics(models.Model):
 
     def get_absolute_url(self):
         return reverse('comics_id', kwargs={'coms_id': self.pk})
+
+    class Meta:
+        verbose_name = 'Comics'
+        verbose_name_plural = 'Comics'
+        ordering = ['time_create', 'title']
 
 
 class Language(models.Model):
