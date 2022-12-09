@@ -2,9 +2,12 @@
 
 {% block content %}
     {% for d in filt_comics %}
-        <li><h2>{{d.title}}</h2>
-        <li><h4>{{d.description}}</h4>
-        <li><h4>{{d.photo}}</h4>
-        <li><h4>{{d.language}}</h4>
+        <h2>{{d.title}}</h2>
+
+{% if comics_item.photo %}
+<p><img class="img-article-left" src="{{d.photo.url}}"></p>
+{% endif %}
+        <h4>{{d.description}}</h4>
+        <h4>{{d.language}}</h4>
     {% endfor %}
 {% endblock %}
