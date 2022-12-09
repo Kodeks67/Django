@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 class Comics(models.Model):
     title = models.CharField(max_length=50, verbose_name='Title')
     description = models.TextField(blank=True, verbose_name='Description')
-    photo = models.ImageField(upload_to="photos/%Y/%m/%d", verbose_name='')
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d", verbose_name='Photo')
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
@@ -23,7 +23,7 @@ class Comics(models.Model):
     class Meta:
         verbose_name = 'Comics'
         verbose_name_plural = 'Comics'
-        ordering = ['time_create', 'title']
+        ordering = ['-time_create', 'title']
 
 
 class Language(models.Model):
@@ -35,6 +35,11 @@ class Language(models.Model):
 
     def get_absolute_url(self):
         return reverse('language', kwargs={'lang_id': self.pk})
+
+    class Meta:
+        verbose_name = 'Languages'
+        verbose_name_plural = 'Language'
+        ordering = ['name']
 
 
 def validate_even(value):

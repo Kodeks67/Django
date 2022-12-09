@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if comics_item.photo %}
-<p><img class="img-article-left" scr="{{comics_item.photo.url}}"></p>
+<p><img class="img-article-left" src="{{comics_item.photo.url}}"></p>
 {% endif %}
 <h1>{{comics_item.title}}</h1>
 {{comics_item.description|linebreaks}}
