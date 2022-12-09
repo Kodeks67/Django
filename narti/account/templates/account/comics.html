@@ -2,9 +2,12 @@
 
 {% block content %}
 
-        <li><h2>{{comics_item.title}}</h2>
-        <li><h4>{{comics_item.description}}</h4>
-        <li><h4>{{comics_item.photo}}</h4>
-        <li><h4>{{comics_item.language}}</h4>
+{% if comics_item.photo %}
+<p><img class="img-article-left" scr="{{comics_item.photo.url}}"></p>
+{% endif %}
+<h1>{{comics_item.title}}</h1>
+{{comics_item.description|linebreaks}}
+{{comics_item.language|linebreaks}}
+{{comics_item.gender|linebreaks}}
 
 {% endblock %}

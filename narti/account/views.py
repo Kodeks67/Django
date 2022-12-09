@@ -14,11 +14,12 @@ menu = [{'title': 'Регистрация', 'url_name': 'register'},
 
 def index(request):
     comics = Comics.objects.all()
-    # if len(comics) == 0:
-    #     # raise Http404()
+    if len(comics) == 0:
+        raise Http404()
     index_context = {'comics': comics,
                      'menu': menu,
                      'title': 'Главная страница',
+                     'isSelected': True
                      }
     return render(request, 'account/index.html', context=index_context)
 
@@ -74,6 +75,7 @@ def show_coms_id(request, coms_id):
     show_coms_id_context = {'menu': menu,
                             'title': 'Главная страница',
                             'comics_item': сomics_item,
+                            'isSelected': True
                             }
     return render(request, 'account/comics.html', context=show_coms_id_context)
 
@@ -84,10 +86,10 @@ def show_lang_id(request, lang_id):
 
 def language(request):
     lang_str = Language.objects.all()
-    language_context = {'comics': comics,
-                        'menu': menu,
+    language_context = {'menu': menu,
                         'title': 'Главная страница',
                         'lang_str': lang_str,
+                        'isSelected': True
                         }
     return render(request, 'account/language.html', context=language_context)
 
@@ -99,15 +101,16 @@ def lang_comics(request):
         search = queryprms.get('search')
         print(request.GET)
         filt_comics = Comics.objects.filter(language__abbr=lang, gender=search)
-        lang_comics_context = {'comics': comics,
-                               'menu': menu,
-                               'title': 'Главная страница',
-                               'filt_comics': filt_comics,
-                               }
+        lang_comics_context = {
+            'menu': menu,
+            'title': 'Главная страница',
+            'filt_comics': filt_comics,
+            'isSelected': True
+        }
         return render(request, 'account/lang_comics.html', context=lang_comics_context)
     else:
         return render(request, 'account/lang_comics.html')
 
-
-def comics(request):
-    return render(request, 'account/comics.html')
+#
+# def comics(request):
+#     return render(request, 'account/comics.html')

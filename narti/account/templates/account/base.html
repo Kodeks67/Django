@@ -33,13 +33,12 @@
     <tr>
      <td valign="top" class="left-chapters">
 	 <ul id="leftchapters">
-        {% if lang_selected == 0 %}
-        <li class="selected">Все категории</li>
+        {% if isSelected == true %}
+        <li class="selected">All comics</li>
         {% else %}
-        <li><a href="{% url 'home' %}">Все категории</a></li>
-        <li><a href="{% url 'language' %}">Языки</a></li>
-        <li><a href="{% url 'comics' %}">Комиксы</a></li>
-        <li><a href="{% url 'lang-comics' %}">Комиксы по языкам</a></li>
+        <li><a href="{% url 'home' %}">All comics</a></li>
+        <li><a href="{% url 'language' %}">Languages</a></li>
+        <li><a href="{% url 'lang-comics' %}"></a>Comics by languages</li>
         {% endif %}
         <td valign="top" class="content">
             <!-- Хлебные крошки -->

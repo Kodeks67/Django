@@ -5,11 +5,11 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Comics(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.TextField(blank=True)
+    title = models.CharField(max_length=50, verbose_name='Title')
+    description = models.TextField(blank=True, verbose_name='Description')
     photo = models.ImageField(upload_to="photos/%Y/%m/%d")
     is_published = models.BooleanField(default=True)
-    language = models.ForeignKey('Language', on_delete=models.PROTECT, null=True)
+    language = models.ForeignKey('Language', on_delete=models.PROTECT, null=True, verbose_name='Language')
     gender = models.CharField(max_length=4, null=True)
 
     def __str__(self):
