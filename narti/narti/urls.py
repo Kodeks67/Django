@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from account import views
-
+from openApi.views import ComicsApiView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,9 +24,11 @@ urlpatterns = [
     path('language/', views.language, name='language'),
     path('lang-comics/', views.lang_comics, name='lang-comics'),
     # path('comics/',  views.comics, name='comics'),
-    path('comics/<int:coms_id>',  views.show_coms_id, name='comics_id'),
+    path('comics/<int:coms_id>', views.show_coms_id, name='comics_id'),
     # path('language/<int:lang_id>', views.show_lang_id, name='language'),
     re_path('about/', views.about, name='about'),
     re_path('register/', views.register, name='register'),
     re_path('login/', views.user_login, name='login'),
+    #     openApi urls
+    path('narty/api/comics/', ComicsApiView.as_view())
 ]
